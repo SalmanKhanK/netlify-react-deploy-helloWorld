@@ -14,7 +14,7 @@ const BasketSlice=createSlice({
     reducers:{
         add:(state,action)=> {
        
-            state.ProductList.map(item=>{
+         state.ProductList.map(item=>{
                 if(item.id===action.payload.id){
                      state.BasketProduct.push(action.payload)
                      item.added=true
@@ -22,13 +22,13 @@ const BasketSlice=createSlice({
      }
               
             })
-          
+          return;
             
             },
        
         remove:(state,action)=>{
           
-          const indexFind=(ev:ProductType)=>JSON.stringify(ev.id)==JSON.stringify(action.payload.id)
+          const indexFind=(ev:ProductType)=>JSON.stringify(ev.id)===JSON.stringify(action.payload.id)
           const delIndex=JSON.stringify(state.BasketProduct.findIndex(indexFind))
            JSON.stringify(state.BasketProduct.splice(Number(delIndex),1))
         }
